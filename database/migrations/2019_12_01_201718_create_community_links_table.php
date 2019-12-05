@@ -18,7 +18,7 @@ class CreateCommunityLinksTable extends Migration
             $table->bigInteger('user_id')->index();
             $table->bigInteger('category_id')->index();
             $table->string('title');
-            $table->string('link')->unique();
+            $table->string('url')->unique();
             $table->boolean('approved')->default(0);
             $table->timestamps();
         });
