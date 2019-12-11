@@ -9,6 +9,7 @@
           <ul class="list-group">
             @foreach ($links as $link)
               <li class="list-group-item">
+                <span class="badge badge-pill badge-primary {{ $link->category->slug }}-badge">{{ $link->category->title }}</span>
                 <a href="{{ $link->url }}" target="_blank">
                   {{ $link->title }}
                 </a>

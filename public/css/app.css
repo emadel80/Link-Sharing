@@ -11356,3 +11356,19 @@ a.text-dark:focus {
   }
 }
 
+.badge {
+  margin-right: 0.4rem;
+}
+
+.php-badge {
+  background-color: #e3342f;
+}
+
+.js-badge {
+  background-color: #ffed4a;
+}
+
+.ruby-badge {
+  background-color: #db7070;
+}
+
