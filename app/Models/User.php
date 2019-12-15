@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Determine if the user is trusted.
+     * 
+     * @return bool
+     */
+    public function isTrusted()
+    {
+        return !! $this->trusted;
+    }
 }

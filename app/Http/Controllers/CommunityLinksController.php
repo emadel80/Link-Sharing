@@ -9,14 +9,25 @@ use Illuminate\Http\Request;
 
 class CommunityLinksController extends Controller
 {
+    /**
+     * Show all community links.
+     * 
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
-        $links = CommunityLink::paginate(25);
+        $links      = CommunityLink::where('approved', 1)->paginate(25);
         $categories = Category::orderBy('title', 'asc')->get();
                   
         return view('community.index', compact('links', 'categories'));
     }
 
+    /**
+     * Publish a new community link.
+     * 
+     * @param  \Illuminate\Http\Request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $this->validate($request, [
