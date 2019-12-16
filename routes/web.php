@@ -17,7 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('community', 'CommunityLinksController@index');
-Route::post('community', 'CommunityLinksController@store');
+Route::get('/home',                             'HomeController@index')->name('home');
+Route::get('community',                         'CommunityLinksController@index');
+Route::post('community',                        'CommunityLinksController@store');
+Route::get('community/categories/{category}',   'CommunityLinksController@index');
 

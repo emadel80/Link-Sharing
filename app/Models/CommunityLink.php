@@ -13,7 +13,9 @@ class CommunityLink extends Model
      * @var array
      */
     protected $fillable = [
-        'category_id', 'title', 'url'
+        'category_id', 
+        'title', 
+        'url'
     ];
 
     /**
@@ -53,6 +55,21 @@ class CommunityLink extends Model
         return $this->fill($attributes)->save();
     }
 
+    /**
+     * Scope the query to records from a particular category
+     * 
+     * @param Builder $builder
+     * @param Category $category
+     * @return Builder
+     */
+    public function scopeForCategory($builder, $category)
+    {
+        if (optional($category)->exists) {
+            return $builder->where('category_id', $category->id);
+        }
+
+        return $builder;
+    }
     /**
      * Mark the community link as approved.
      * 

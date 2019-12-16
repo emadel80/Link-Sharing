@@ -13,14 +13,15 @@ class CommunityLinksController extends Controller
     /**
      * Show all community links.
      * 
+     * @param Category $category
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Category $category = null)
     {
-        $links      = CommunityLink::where('approved', 1)->latest('updated_at')->paginate(25);
+        $links      = CommunityLink::forCategory($category)->where('approved', 1)->latest('updated_at')->paginate(3);
         $categories = Category::orderBy('title', 'asc')->get();
-                  
-        return view('community.index', compact('links', 'categories'));
+        
+        return view('community.index', compact('links', 'categories', 'category'));
     }
 
     /**

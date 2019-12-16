@@ -3,30 +3,17 @@
 @section('content')
     <div class="row">
         <div class="col-md-8">
-          <h1>Community</h1>
-      
-          <ul class="list-group">
-            @if (count($links))
-              @foreach ($links as $link)
-                <li class="list-group-item">
-                  <span class="badge badge-pill badge-primary {{ $link->category->slug }}-badge">{{ $link->category->title }}</span>
-                  <a href="{{ $link->url }}" target="_blank">
-                    {{ $link->title }}
-                  </a>
-      
-                  <small>
-                    Contributed By <a href="#">{{ $link->user->name }}</a>
-                    {{ $link->updated_at->diffForHumans() }}
-                  </small>
-                </li>
-              @endforeach
-            @else
-              <li class="list-group-item">
-                No contributions yet.
-              </li>
+          <h1>
+            <a href="/community">Community</a>
+
+            @if (optional($category)->exists)  
+              <span>&mdash; {{ $category->title }}</span>
             @endif
-            
-          </ul>
+          </h1>
+      
+          
+
+          @include('community.list')
         </div>
       
         @include('community.add-link')
