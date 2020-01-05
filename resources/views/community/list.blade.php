@@ -2,15 +2,36 @@
     @if (count($links))
       @foreach ($links as $link)
         <li class="list-group-item">
-          <a href="/community/categories/{{ $link->category->slug }}" class="badge badge-pill badge-primary {{ $link->category->slug }}-badge">{{ $link->category->title }}</span>
-          <a href="{{ $link->url }}" target="_blank">
-            {{ $link->title }}
-          </a>
+              <form class="form-inline" method="POST" action="/votes/{{ $link->id }}">
+                @csrf
 
-          <small>
-            Contributed By <a href="#">{{ $link->user->name }}</a>
-            {{ $link->updated_at->diffForHumans() }}
-          </small>
+                <div class="w-10">
+                  <button type="submit" class="btn {{ auth()->user() && auth()->user()->votedFor($link) ? 'btn-success' : 'btn-light' }}"
+                      {{ auth()->guest() ? 'disabled': '' }}
+                    >
+                    {{ $link->votes->count() }}
+                  </button>  
+                </div>
+
+                <div class="w-10">
+                  <a href="/community/categories/{{ $link->category->slug }}" class="badge badge-pill badge-primary {{ $link->category->slug }}-badge mr-md-4">{{ $link->category->title }}</a>
+                </div>
+
+                <div class="w-80">
+                    <a class="mr-auto" href="{{ $link->url }}" target="_blank">
+                      {{ $link->title }}
+                    </a>  
+                </div>
+
+                  <div class="w-20"></div>
+                  <div class="w-80">
+                    <small>
+                      Contributed By <a href="#">{{ $link->user->name }}</a>
+                      {{ $link->updated_at->diffForHumans() }}
+                    </small>
+                  </div>
+                  
+              </form>
         </li>
       @endforeach
     @else
@@ -18,7 +39,6 @@
         No contributions yet.
       </li>
     @endif
-    
   </ul>
 
   {{ $links->links() }}

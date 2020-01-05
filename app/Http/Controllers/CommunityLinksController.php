@@ -18,7 +18,7 @@ class CommunityLinksController extends Controller
      */
     public function index(Category $category = null)
     {
-        $links      = CommunityLink::forCategory($category)->where('approved', 1)->latest('updated_at')->paginate(3);
+        $links      = CommunityLink::with('votes')->forCategory($category)->where('approved', 1)->latest('updated_at')->paginate(3);
         $categories = Category::orderBy('title', 'asc')->get();
         
         return view('community.index', compact('links', 'categories', 'category'));

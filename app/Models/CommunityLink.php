@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\CommunityLinkVote;
 use App\Exceptions\CommunityLinkAlreadySubmitted;
 use Illuminate\Database\Eloquent\Model;
 
@@ -101,6 +102,16 @@ class CommunityLink extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * A community link may have many votes
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function votes()
+    {
+        return $this->hasMany(CommunityLinkVote::class, 'community_link_id');
     }
 
     /**

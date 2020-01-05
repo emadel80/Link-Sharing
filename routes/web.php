@@ -21,4 +21,4 @@ Route::get('/home',                             'HomeController@index')->name('h
 Route::get('community',                         'CommunityLinksController@index');
 Route::post('community',                        'CommunityLinksController@store');
 Route::get('community/categories/{category}',   'CommunityLinksController@index');
-
+Route::post('votes/{link}',                     'VotesController@store');

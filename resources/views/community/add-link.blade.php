@@ -46,6 +46,6 @@
   @endauth
         
   @guest
-    <p>Please, <a href="/login">sign in</a> to contribute a link.</p>
+    <p>Please, <a href="/login">sign in</a> to contribute and vote for a link.</p>
   @endguest
 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,5 +46,23 @@ class User extends Authenticatable
     public function isTrusted()
     {
         return !! $this->trusted;
+    }
+
+    public function votes()
+    {
+        return $this->belongsToMany(CommunityLink::class, 'community_links_votes')->withTimestamps();
+    }
+    
+    public function toggleVoteFor(CommunityLink $link)
+    {
+        CommunityLinkVote::firstOrNew([
+            'user_id' => Auth::id(),
+            'community_link_id' => $link->id
+        ])->toggle();
+    }
+
+    public function votedFor(CommunityLink $link)
+    {
+        return $link->votes->contains('user_id', $this->id);
     }
 }

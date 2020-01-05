@@ -10,8 +10,6 @@
               <span>&mdash; {{ $category->title }}</span>
             @endif
           </h1>
-      
-          
 
           @include('community.list')
         </div>
