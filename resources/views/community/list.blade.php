@@ -5,7 +5,7 @@
               <form class="form-inline" method="POST" action="/votes/{{ $link->id }}">
                 @csrf
 
-                <div class="w-10">
+                <div class="votes-btn-width">
                   <button type="submit" class="btn {{ auth()->user() && auth()->user()->votedFor($link) ? 'btn-success' : 'btn-light' }}"
                       {{ auth()->guest() ? 'disabled': '' }}
                     >
@@ -13,23 +13,23 @@
                   </button>  
                 </div>
 
-                <div class="w-10">
+                <div class="badge-width">
                   <a href="/community/categories/{{ $link->category->slug }}" class="badge badge-pill badge-primary {{ $link->category->slug }}-badge mr-md-4">{{ $link->category->title }}</a>
                 </div>
 
-                <div class="w-80">
+                <div class="link-width">
                     <a class="mr-auto" href="{{ $link->url }}" target="_blank">
                       {{ $link->title }}
                     </a>  
                 </div>
 
-                  <div class="w-20"></div>
-                  <div class="w-80">
-                    <small>
-                      Contributed By <a href="#">{{ $link->user->name }}</a>
-                      {{ $link->updated_at->diffForHumans() }}
-                    </small>
-                  </div>
+                <div class="spacer"></div>
+                
+                <small>
+                  Contributed By <a href="#">{{ $link->user->name }}</a>
+                  {{ $link->updated_at->diffForHumans() }}
+                </small>
+                
                   
               </form>
         </li>

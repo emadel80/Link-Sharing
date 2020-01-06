@@ -11356,16 +11356,20 @@ a.text-dark:focus {
   }
 }
 
-.w-10 {
+.votes-btn-width {
   width: 10%;
 }
 
-.w-20 {
-  width: 20%;
+.badge-width {
+  width: 14%;
 }
 
-.w-80 {
-  width: 80%;
+.link-width {
+  width: 76%;
+}
+
+.spacer {
+  width: 24%;
 }
 
 .badge {
