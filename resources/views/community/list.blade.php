@@ -41,4 +41,4 @@
     @endif
   </ul>
 
-  {{ $links->links() }}
+  {{ $links->appends(request()->query())->links() }}

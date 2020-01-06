@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Queries\CommunityLinksQuery;
 use App\Models\Category;
 use App\Models\CommunityLink;
 use App\Exceptions\CommunityLinkAlreadySubmitted;
@@ -18,7 +19,9 @@ class CommunityLinksController extends Controller
      */
     public function index(Category $category = null)
     {
-        $links      = CommunityLink::with('votes')->forCategory($category)->where('approved', 1)->latest('updated_at')->paginate(3);
+        $links = (new CommunityLinksQuery)->get(request('popular') == "true", $category);
+
+        // $links      = CommunityLink::with('votes')->forCategory($category)->where('approved', 1)->latest('updated_at')->paginate(3);
         $categories = Category::orderBy('title', 'asc')->get();
         
         return view('community.index', compact('links', 'categories', 'category'));

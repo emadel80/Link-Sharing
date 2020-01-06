@@ -11,6 +11,12 @@
             @endif
           </h1>
 
+          <div class="d-inline-block">
+            <a href="?popular=true">Most Popular</a>
+            <a class="pl-5" href="?popular=false">Most Recent</a>
+          </div>
+          
+
           @include('community.list')
         </div>
       
