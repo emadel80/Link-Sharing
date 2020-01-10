@@ -11,10 +11,16 @@
             @endif
           </h1>
 
-          <div class="d-inline-block">
-            <a href="?popular=true">Most Popular</a>
-            <a class="pl-5" href="?popular=false">Most Recent</a>
-          </div>
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link {{ request()->exists('popular') ? 'active' : '' }}" href="?popular=true">Most Popular</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link {{ request()->exists('popular') ? '' : 'active' }}" href="{{ request()->url() }}">Most Recent</a>
+            </li>
+            
+          </ul>
           
 
           @include('community.list')
