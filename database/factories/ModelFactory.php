@@ -1,6 +1,8 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+use App\Models\Category;
+use App\Models\CommunityLinkVote;
 use App\Models\CommunityLink;
 use App\Models\User;
 use Faker\Generator as Faker;

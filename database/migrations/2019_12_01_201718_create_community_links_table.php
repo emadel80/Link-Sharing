@@ -16,6 +16,7 @@ class CreateCommunityLinksTable extends Migration
         Schema::create('community_links', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->index();
+            $table->bigInteger('multimedia_id')->index();
             $table->bigInteger('category_id')->index();
             $table->string('title');
             $table->string('url')->unique();
